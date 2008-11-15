@@ -6,7 +6,7 @@ module TinyMCEHelper
     !@uses_tiny_mce.nil?
   end
   
-  def tiny_mce_init(options = @tiny_mce_options)
+  def single_tiny_mce_init(options, flush = true)
     options ||= {}
     default_options = {:mode => 'textareas',
                        :theme => 'simple'}
@@ -34,7 +34,16 @@ module TinyMCEHelper
       i += 1
     end
     tinymce_js += "\n});"
-    javascript_tag tinymce_js
+    flush ? javascript_tag(tinymce_js) : tinymce_js
+  end
+  
+  def tiny_mce_init(options = @tiny_mce_options)
+    options = [options] unless options.is_a?(Array)
+    tinymce_js = ''
+    options.each do |mce_options|
+    	tinymce_js << single_tiny_mce_init(mce_options, false)
+    end
+    javascript_tag(tinymce_js)
   end
   alias tiny_mce tiny_mce_init
   
