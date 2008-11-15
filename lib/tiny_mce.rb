@@ -3,10 +3,9 @@ module TinyMCE
     attr_accessor :editors
     def uses_tiny_mce(options = {})
       tiny_mce_options = options.delete(:options) || nil
-      @editors ||= []
-      @editors << tiny_mce_options
       proc = Proc.new do |c|
-        c.instance_variable_set(:@tiny_mce_options, @editors)
+      	c.instance_variable_set(:@tiny_mce_options, []) unless c.instance_variable_defined?(:@tiny_mce_options)
+        c.instance_variable_set(:@tiny_mce_options, c.instance_variable_get(:@tiny_mce_options) + [tiny_mce_options])
         c.instance_variable_set(:@uses_tiny_mce, true)
       end
       before_filter(proc, options)
