@@ -20,4 +20,14 @@ namespace :tiny_mce_plus do
          
     puts "** Successfully installed tiny_mce_plus dependent plugins"
   end
+  
+  desc "Sync tiny_mce_plus files into the app"
+  task :sync do
+    puts "** Syncing tiny_mce_plus migration, initializer, and public files" 
+    system "rsync -ruv vendor/plugins/tiny_mce_plus/db/migrate db"
+    system "rsync -ruv vendor/plugins/tiny_mce_plus/config/initializers config"
+    system "rsync -ruv vendor/plugins/tiny_mce_plus/public ."
+    puts "** Successfully synced tiny_mce_plus files"
+  end
+
 end
