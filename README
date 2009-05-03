@@ -1,14 +1,14 @@
 TinyMcePlus
 ===========
-
-This plugin based on community engine and tiny_mce plugin, thanks for their great job.  Modified to work with Rails 2.3.2 new feature, Engines.  This plugin will add tiny_mce text editting to any textarea that you allow.  Read the How to Install section to get started.
+Add Awesome Text Editting to your text areas in your app, through the Tiny MCE plugin, along with FILE Uploads!
+This plugin is modified to work with Rails 2.3.2 new feature, Engines and will add tiny_mce text editting to any textarea that you allow.  Read the How to Install section to get started.
 
 How to Install:
 ---------------
 
 1. Install tiny_mce_plus (ensure you have git added as a source... you should by now.)
 
-script/plugin install git://github.com/devon/tiny_mce_plus.git
+script/plugin install git://github.com/nerbie69/tiny_mce_plus.git
 
 2. Install dependent plugins if you do not have these installed. SKIP THIS STEP IF YOU ALREAADY HAVE THESE LOADED IN YOUR APP. These are old right now, but work with the tiny_mce_plus plugin:
 
@@ -69,6 +69,9 @@ Attention:
 ==========
 1. do not put <p> </p> around the textarea.
 2. If you use old will_paginate plugin, maybe change the url_for to url_option in remote_link_renderer.rb
+
+Thank You:
+This plugin is based on community engine and tiny_mce plugin, thanks for their great job.  
 
 Copyright (c) 2008 devon at kuxuesoft.com, released under the MIT license
 modified by nerbie69 at github to work with Rails engines and 2.3.2.
