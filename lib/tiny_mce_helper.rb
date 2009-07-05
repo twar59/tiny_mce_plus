@@ -48,5 +48,12 @@ module TinyMCEHelper
     javascript_tag(tinymce_js)
   end
   alias tiny_mce tiny_mce_init
-
+  
+  def javascript_include_tiny_mce
+    javascript_include_tag "tiny_mce/jquery.tinymce.js"
+  end
+  
+  def javascript_include_tiny_mce_if_used
+    javascript_include_tiny_mce if @uses_tiny_mce
+  end
 end
