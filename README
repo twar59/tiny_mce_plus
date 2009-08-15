@@ -21,13 +21,14 @@ attachment_fu （git://github.com/technoweenie/attachment_fu.git）
 responds_to_parent （http://responds-to-parent.googlecode.com/svn/trunk）
 will_paginate （git://github.com/mislav/will_paginate.git）
 
-FYI: It's recommended that you use restful_authentication, as you'll need a 'login_required' method and a 'current_user' object in your application. 
+FYI part one: This plugin will use whatever default image processor you have on your system.  To specify a particular image processor (e.g., MiniMagick, etc), uncomment the line in the tiny_mce_photo.rb.  See Attachment_fu for more details.
+FYI part two: It's recommended that you use restful_authentication, as you'll need a 'login_required' method and a 'current_user' object in your application. 
 
 3. Setup your Restful Authentication plugin.. we'll wait.
 
 4. Run the following rake task, once plugins setup:
 
-rake tiny_mce_plugin:sync
+rake tiny_mce_plus:sync
 
 Your migration files will be added, your config/initializer is added, as well as the public folder, with all the tiny_mce JS goodness.
 

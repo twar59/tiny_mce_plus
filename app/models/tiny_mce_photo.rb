@@ -4,7 +4,7 @@ class TinyMcePhoto < ActiveRecord::Base
                   :max_size => 5.megabytes,
                   :resize_to => '600x>',
                   :thumbnails => {:thumb => "100>", :medium => "290x320>", :large => "664>"},
-                  :processor => :MiniMagick,
+                  #:processor => :MiniMagick, #uncomment if you are using more then one processor, and want to dictate the exact processor to use.
                   :path_prefix => 'public/tiny_mce'
 
   validates_as_attachment
