@@ -45,6 +45,8 @@ uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit])
 
 Remember: you can change default_mce_options to advanced_mce_options, for a more robust editor, the advanced option also has the magic file upload that you want!
 
+7.  In your view: simply add a normal text_area to your view. any text area that is NOT in a <p> tag will be converted. it's awesome. e.g., <%= f.text_area :body, :style => 'width: 900px;' %>
+
 What Files are Installed?
 =========================
 
