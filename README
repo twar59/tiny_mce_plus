@@ -1,14 +1,15 @@
 TinyMcePlus
 ===========
-Add Awesome Text Editting to your text areas in your app, through the Tiny MCE plugin, along with FILE Uploads!
+Add reasonable text editing to your text areas in your app through the Tiny MCE plugin, along with File uploads!
+
 This plugin is modified to work with Rails 2.3.2 new feature, Engines and will add tiny_mce text editting to any textarea that you allow.  Read the How to Install section to get started.
 
 How to Install:
 ---------------
 
-1. Install tiny_mce_plus (ensure you have git added as a source... you should by now.)
+1. Install tiny_mce_plus (ensure you have github added as a source... you should by now.)
 
-script/plugin install git://github.com/nerbie69/tiny_mce_plus.git
+script/plugin install git://github.com/twar59/tiny_mce_plus.git
 
 2. Install dependent plugins if you do not have these installed. SKIP THIS STEP IF YOU ALREAADY HAVE THESE LOADED IN YOUR APP. These are old right now, but work with the tiny_mce_plus plugin:
 
@@ -25,6 +26,14 @@ FYI part one: This plugin will use whatever default image processor you have on 
 FYI part two: It's recommended that you use restful_authentication, as you'll need a 'login_required' method and a 'current_user' object in your application. 
 
 3. Setup your Restful Authentication plugin.. we'll wait.
+   or
+   Create the following attributes in your ApplicationController
+      def login_required
+        false
+      end
+      def current_user
+        nil
+      end
 
 4. Run the following rake task, once plugins setup:
 
@@ -78,3 +87,5 @@ This plugin is based on community engine and tiny_mce plugin, thanks for their g
 
 Copyright (c) 2008 devon at kuxuesoft.com, released under the MIT license
 modified by nerbie69 at github to work with Rails engines and 2.3.2.
+then
+modified by twar59 at github to merge other forks

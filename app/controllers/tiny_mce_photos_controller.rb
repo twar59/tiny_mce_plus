@@ -5,7 +5,12 @@ class TinyMcePhotosController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create 
 
   def index
-    @photos = TinyMcePhoto.paginate :page => params[:page], :order => "created_at DESC", :conditions => ['user_id = ?', current_user.id], :per_page => 10
+    # support public(user_id == nil) user uploading
+    if current_user
+      @photos = TinyMcePhoto.paginate :page => params[:page], :order => "created_at DESC", :conditions => ['user_id = ?', current_user.id], :per_page => 10
+    else
+      @photos = TinyMcePhoto.paginate :page => params[:page], :order => "created_at DESC", :conditions => ['user_id is null and parent_id is null'], :per_page => 10
+    end
     render :update do |page|
       page.replace_html :dynamic_images_list, :partial => 'photo_list', :locals => { :photos => @photos }
     end
