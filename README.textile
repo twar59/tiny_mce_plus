@@ -1,0 +1,99 @@
+h2. TinyMcePlus
+
+Add reasonable text editing to your text areas in your app through the Tiny MCE plugin, along with File uploads!
+This plugin is modified to work with Rails 2.3.2 new feature, Engines and will add tiny_mce text editting to any textarea that you allow.  Read the How to Install section to get started.
+
+h3. How to Install:
+
+1. Install tiny_mce_plus (ensure you have github added as a source... you should by now.)
+
+<pre>
+  script/plugin install git://github.com/twar59/tiny_mce_plus.git
+</pre>
+
+2. Install dependent plugins if you do not have these installed. SKIP THIS STEP IF YOU ALREADY HAVE THESE LOADED IN YOUR APP. These are old right now, but work with the tiny_mce_plus plugin:
+
+If you do not have these plugins installed run this rake task:
+
+<pre>
+  rake tiny_mce_plus:plugins
+</pre>
+
+These plugins will be installed.
+* attachment_fu （git://github.com/technoweenie/attachment_fu.git）
+* responds_to_parent （http://responds-to-parent.googlecode.com/svn/trunk）
+* will_paginate （git://github.com/mislav/will_paginate.git）
+
+FYI part one: This plugin will use whatever default image processor you have on your system.  To specify a particular image processor (e.g., MiniMagick, etc), uncomment the line in the tiny_mce_photo.rb.  See Attachment_fu for more details.
+FYI part two: It's recommended that you use restful_authentication, as you'll need a 'login_required' method and a 'current_user' object in your application. 
+
+3. Setup your Restful Authentication plugin.. we'll wait.
+   or
+   Create the following attributes in your ApplicationController 
+<pre><code>
+          def login_required
+            false
+          end
+          def current_user
+            nil
+          end
+</code></pre>
+
+4. Run the following rake task, once plugins setup:
+
+<pre>
+  rake tiny_mce_plus:sync
+</pre>
+
+Your migration files will be added, your config/initializer is added, as well as the public folder, with all the tiny_mce JS goodness.
+
+5. In your application.html.erb file, add this code.  :
+<pre>
+<%= javascript_include_tiny_mce_if_used %> 
+<%= tiny_mce if using_tiny_mce? %>
+<% #You may have this line below already in your layout file, so just add the two above it, if you do %>
+<%= javascript_include_tag :defaults %>
+</pre>
+
+6. In the controller you wish to add the tiny_mce_editor add the following:
+
+<pre>
+  uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit])
+</pre>
+
+Remember: you can change default_mce_options to advanced_mce_options, for a more robust editor, the advanced option also has the magic file upload that you want!
+
+7.  In your view: simply add a normal text_area to your view. any text area that is NOT in a paragraph will be converted. it's awesome. e.g., <%= f.text_area :body, :style => 'width: 900px;' %>
+
+h3. What Files are Installed?
+
+@rake tiny_mce_plus:sync@ will Install following files:
+
+<pre>
+  db
+    |-- migrate
+        |-- 2009...tiny_mce_photos.rb
+  
+  config
+    |-- initializers
+      |-- tiny_mce_plus_config.rb
+  
+  public
+    |-- images
+      |-- tiny_mce
+    |-- javascripts
+      |-- tiny_mce
+</pre>
+
+You may custom the config in @tiny_mce_plus_config.rb@.
+
+h3. Attention:
+
+1. do not put a paragraph around the textarea.
+2. If you use old will_paginate plugin, maybe change the url_for to url_option in remote_link_renderer.rb
+
+h3. Thank You:
+
+This plugin is based on community engine and tiny_mce plugin, thanks for their great job.  
+Copyright (c) 2008 devon at kuxuesoft.com, released under the MIT license
+modified by nerbie69 at github to work with Rails engines and 2.3.2.
