@@ -1,4 +1,6 @@
-h2. TinyMcePlus
+h2. TinyMcePlus - I have received info that this is broken
+
+I will look at this and attempt to repair it when I have a free moment
 
 Add reasonable text editing to your text areas in your app through the Tiny MCE plugin, along with File uploads!
 This plugin is modified to work with Rails 2.3.2 new feature, Engines and will add tiny_mce text editting to any textarea that you allow.  Read the How to Install section to get started.
